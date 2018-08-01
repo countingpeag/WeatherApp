@@ -1,0 +1,2 @@
+KEY = 1bdf69bbaa728155024a0cfce16224ee
+URL = http://api.openweathermap.org/data/2.5/weather?q={location}&APPID={api_key}

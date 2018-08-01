@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import Location from './Location';
 import WeatherData from './WeatherData';
+import transformWeather from '../../services/transformWeather';
 import { Weathers } from '../../constants/weathers';
 import './styles.css';
 
-const location = "Buenos Aires,AR";
+const location = "Guadalajara Metropolitan Area, MX";
 const api_key = "1bdf69bbaa728155024a0cfce16224ee";
-const api_weather = `https://samples.openweathermap.org/data/2.5/weather?q=${location}&appid=${api_key}`;
+const api_weather = `http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${api_key}`;
 
 const data1 = {
     temperature: 20,
@@ -20,16 +21,24 @@ class WeatherLocation1 extends Component{
     constructor(){
         super();
         this.state = {
-            city: 'Mexico',
+            city: 'Guadalajara, MX',
             data: data1
         };   
     }
 
     handleUpdateClick = () => {
         fetch(api_weather)
-        /*this.setState({
-            data: data2
-        });*/
+        .then( data => {
+            console.log(data);
+            return data.json();
+        })
+        .then(weather_data => {
+            //debugger;
+            const data = transformWeather(weather_data);
+            this.setState({data: data});
+            
+        });
+
         console.log("Actualizado");
     }
     
