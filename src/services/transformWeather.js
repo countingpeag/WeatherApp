@@ -2,8 +2,7 @@ import convert from 'convert-units';
 import { Weathers } from '../constants/weathers';
 
 const getTemp = kelvin => {
-    console.log(kelvin);
-    return convert(kelvin).from('K').to('C');
+    return Number(convert(kelvin).from('K').to('C'));
 }
 
 const getWeatherState = weather => {
