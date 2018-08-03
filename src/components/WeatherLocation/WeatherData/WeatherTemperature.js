@@ -18,6 +18,10 @@ const getIconeName = weatherState => {
             return 'snow';
         case Weathers.WINDY:
             return 'windy';
+        case Weathers.THUNDER:
+            return 'day-thunderstorm';
+        case Weathers.DRIZZLE:
+            return 'day-showers';
         default:
             return 'meteor';
     }

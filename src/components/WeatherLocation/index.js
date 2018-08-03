@@ -1,23 +1,22 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import transformWeather from '../../services/transformWeather';
 import './styles.css';
 
-const location = "Guadalajara Metropolitan Area, MX";
 const api_key = "1bdf69bbaa728155024a0cfce16224ee";
-const api_weather = `http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${api_key}`;
+const url = "http://api.openweathermap.org/data/2.5/weather";
 
-class WeatherLocation1 extends Component{
+class WeatherLocation extends Component{
     
-    constructor(){
+    constructor({ city }){
         super();
         this.state = {
-            city: 'Guadalajara, MX',
+            city: city,
             data: null
         };   
-        //console.log("Contructor");
     }
 
     componentWillMount(){
@@ -37,6 +36,8 @@ class WeatherLocation1 extends Component{
     }
     
     handleUpdateClick = () => {
+        
+        const api_weather = `${url}?q=${this.state.city}&APPID=${api_key}`;
         fetch(api_weather)
         .then( data => {
             return data.json();
@@ -61,4 +62,8 @@ class WeatherLocation1 extends Component{
     }
 }
 
-export default WeatherLocation1;
+WeatherLocation.propTypes = {
+    city: PropTypes.string,
+}
+
+export default WeatherLocation;

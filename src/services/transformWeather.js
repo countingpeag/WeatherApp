@@ -6,13 +6,28 @@ const getTemp = kelvin => {
 }
 
 const getWeatherState = weather => {
-    return Weathers.SUN;
+    const  { id } = weather[0];
+    
+    if(id<300)
+        return Weathers.THUNDER;
+    else if(id<400)
+        return Weathers.DRIZZLE;
+    else if(id<600)
+        return Weathers.RAIN;
+    else if(id<700)
+        return Weathers.SNOW;
+    else if(id===800)
+        return Weathers.SUN;
+    else
+        return Weathers.CLOUDY
+
 }
 
 const transformWeather = weather_data => {
+    const { weather } = weather_data;
     const { humidity, temp } = weather_data.main;
     const { speed } = weather_data.wind;
-    const weatherState = getWeatherState(this.weather);
+    const weatherState = getWeatherState(weather);
     const temperature = getTemp(temp);
 
     const data = {

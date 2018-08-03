@@ -5,4 +5,6 @@ export const Weathers = {
     SNOW: 'snow',
     WINDY: 'windy',
     SUN: 'sun',
+    THUNDER: 'thunder',
+    DRIZZLE: 'drizzle'
 };
