@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.4.2",
+    "@material-ui/icons": "^2.0.1",
     "convert-units": "^2.3.4",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
