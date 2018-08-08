@@ -1,5 +1,6 @@
 import React from 'react';
 import LocationList from './components/LocationList';
+import ForecastExtended from './components/ForecastExtended';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
@@ -13,11 +14,20 @@ const cities = ['Bogotá, col', 'Culiacan, MX', 'Zapopan, MX'];
 
 class App extends React.Component {
 
+  constructor(){
+    super();
+    this.state = {
+      city: null,
+    }
+  }
+
   handleSelectedLocation = city => {
-    console.log(`handleSelectedLocation ${city}`);
+    //console.log(`handleSelectedLocation ${city}`);
+    this.setState({city});
   }
 
   render() {
+    const {city} = this.state;
     return (
       <Grid>
         <Row>
@@ -39,8 +49,13 @@ class App extends React.Component {
             <LocationList cities={cities} onSelectedLocation={this.handleSelectedLocation} />
           </Col>
           <Col xs={12} md={6}>
-            <Paper zDepth={4}>
-              <div className="detail"></div>
+            <Paper>
+              <div className="detail">
+              {
+                city!==null &&
+                <ForecastExtended city={city} />
+              }
+              </div>
             </Paper>
           </Col>
         </Row>
