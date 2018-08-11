@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ForecastItem from './ForecastItem';
+import transformcast from '../services/transformForecast';
 import './styles.css';
 
 /*const days = ['Lunes','Martes','Miercoles','Jueves', 'Viernes'];
@@ -29,13 +30,15 @@ class ForecastExtended extends Component{
             data.json()
         )).then( weather_data => {
             console.log(weather_data);
+            const forecastData = transformcast(weather_data);
+            this.setState({ forecastData });
             }
         );
     }
 
     renderForcastItemDays(){
         //return days.map( day => <ForecastItem weekday={day} hour={10} data={data}/>);
-        return 'Render items';
+        return <h1>'Render items'</h1>;
     }
 
     renderProgress(){
