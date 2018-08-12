@@ -31,6 +31,7 @@ class ForecastExtended extends Component{
         )).then( weather_data => {
             console.log(weather_data);
             const forecastData = transformcast(weather_data);
+            console.log(forecastData);
             this.setState({ forecastData });
             }
         );
