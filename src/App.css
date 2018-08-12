@@ -29,6 +29,15 @@
 
 .detail{
   background: #999;
-  height: 100vh;
-  width: 100%;
+  height: 85vh;
+  width: cal(100% - 40%);
+  overflow: auto;
+}
+
+@media (max-width: 64em){
+  .detail{
+    height: 40vh;
+    width: cal(100% - 40%);
+    overflow: auto;
+  }
 }
