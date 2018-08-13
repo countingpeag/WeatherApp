@@ -24,7 +24,20 @@ class ForecastExtended extends Component{
     }
 
     componentDidMount(){
-        const url_forecast = `${url}?q=${this.props.city}&APPID=${api_key}`;
+        this.updateCity(this.props.city);
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(nextProps !== this.props.city)
+        {
+
+            this.setState({forecastData: null});
+            this.updateCity(nextProps.city);
+        }
+    }
+
+    updateCity = city => {
+        const url_forecast = `${url}?q=${city}&APPID=${api_key}`;
 
         fetch(url_forecast).then( data  => (
             data.json()
@@ -35,7 +48,7 @@ class ForecastExtended extends Component{
             this.setState({ forecastData });
             }
         );
-    }
+    } 
 
     renderForcastItemDays(forecastData){
         return forecastData.map( forecast => (
