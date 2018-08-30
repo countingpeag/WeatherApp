@@ -8,6 +8,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { setCityActionCreator } from './actions';
+import {store} from './store';
 import './App.css';
 
 const cities = ['Bogotá, col', 'Culiacan, MX', 'Zapopan, MX'];
@@ -24,6 +26,8 @@ class App extends React.Component {
   handleSelectedLocation = city => {
     //console.log(`handleSelectedLocation ${city}`);
     this.setState({city});
+    store.dispatch(setCityActionCreator(city));
+    //store.dispatch(setCity(city));
   }
 
   render() {

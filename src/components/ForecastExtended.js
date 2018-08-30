@@ -30,7 +30,7 @@ class ForecastExtended extends Component{
     componentWillReceiveProps(nextProps){
         if(nextProps !== this.props.city)
         {
-
+            console.log(nextProps, "-->>");
             this.setState({forecastData: null});
             this.updateCity(nextProps.city);
         }
