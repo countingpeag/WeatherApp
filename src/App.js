@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import LocationList from './components/LocationList';
 import ForecastExtended from './components/ForecastExtended';
 import { Grid, Row, Col } from 'react-flexbox-grid';
@@ -9,10 +10,10 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { setCityActionCreator } from './actions';
-import {store} from './store';
 import './App.css';
 
 const cities = ['Bogotá, col', 'Culiacan, MX', 'Zapopan, MX'];
+
 
 class App extends React.Component {
 
@@ -26,7 +27,7 @@ class App extends React.Component {
   handleSelectedLocation = city => {
     //console.log(`handleSelectedLocation ${city}`);
     this.setState({city});
-    store.dispatch(setCityActionCreator(city));
+    this.props.setCity(city);
     //store.dispatch(setCity(city));
   }
 
@@ -68,4 +69,9 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToPropsActions = dispatch => ({
+  setCity: value => dispatch(setCityActionCreator(value))
+});
+const AppConnected = connect(null, mapDispatchToPropsActions)(App)
+
+export default AppConnected;
